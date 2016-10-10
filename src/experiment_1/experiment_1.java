@@ -7,8 +7,7 @@ import java.util.regex.Pattern;
 import experiment_1.Expressions; 
 
 public class experiment_1 {
-	//letter numbser新表达式需要初始化 
-	//修改2
+	//letter numbser新表达式需要初始化
 	public static void  main (String[] args){
 		@SuppressWarnings("resource")
 		Scanner in=new Scanner(System.in);

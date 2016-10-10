@@ -38,8 +38,6 @@
 |void simplify（）			|简化表达式，包括计算和合并同类项|
 |ArrayList varCount（x）		|接受变量名，计算每个多项式中变量x的个数记录到ArrayList中并返回|
 
-- 为了实验报告修改，忽略这一行2333
-
 
 
 
