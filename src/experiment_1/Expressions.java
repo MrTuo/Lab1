@@ -5,10 +5,11 @@ import java.util.regex.Pattern;
 
 public class Expressions {
 	 //属性
+	//修改2
     private String expression = "";//保存原表达式串
    
     /**
-     * 构造函数(为了写实验报告专门做一次模拟修改 )
+     * 构造函数(为了写实验报告专门做一次模拟修改   )
      */
     public Expressions(){}
     
