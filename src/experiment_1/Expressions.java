@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class Expressions {
 	 //属性
     private String expression = "";//保存原表达式串
-  
+   
     /**
      * 构造函数
      */
