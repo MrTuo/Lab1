@@ -8,7 +8,7 @@ public class Expressions {
     private String expression = "";//保存原表达式串
    
     /**
-     * 构造函数
+     * 构造函数(为了写实验报告专门做一次模拟修改)
      */
     public Expressions(){}
     
