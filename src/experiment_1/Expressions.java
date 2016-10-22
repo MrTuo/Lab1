@@ -2,7 +2,6 @@ package experiment_1;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
-
 public class Expressions {
 	 //属性
     private String expression = "";//保存原表达式串
@@ -24,6 +23,7 @@ public class Expressions {
     {
     	if (checkExpressionByRE(inputstr)) {
     		expression = inputstr;
+    		System.out.println(expression);
 		}
     	else{
     		System.out.println("The expression is wrong!Stupid!");
