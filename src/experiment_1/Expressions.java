@@ -16,6 +16,10 @@ public class Expressions {
      * 根据输入字符串，创建
      * @param inputstr
      */
+    /**
+	 * .
+	 * @param additionalParameters parameter additional
+	 */
     public void setExpressions(String inputstr)
     {
     	if (checkExpressionByRE(inputstr)) {
@@ -63,15 +67,22 @@ public class Expressions {
 		return newExpression;
     }
     /**
-     * 
-     * @param itemCount
-     * @param var
-     * @param expression
-     * @param fuhao
-     * @return
-     */
+    * set default mock parameter.（方法说明）
+    * @param additionalParameters parameter additional(参数名称)
+    * @return data manager(返回值说明)
+    * @throws Exception if has error(异常说明)
+    */
     public String derivative(String[] itemCount,char var,String expression,ArrayList<String> fuhao){//求导初始化
 		int varNum[];//变量的个数
+		/**
+		 * @return data manager
+		 */
+		/**
+		* set default mock parameter.（方法说明）
+		* @param additionalParameters parameter additional(参数名称)
+		* @return data manager(返回值说明)
+		* @throws Exception if has error(异常说明)
+		*/
 		ArrayList<String>  newitemCount = new ArrayList<String> ();
 		ArrayList<String>  newfuhao = new ArrayList<String> ();
 		String end="";
