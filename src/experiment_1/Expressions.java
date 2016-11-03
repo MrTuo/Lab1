@@ -35,10 +35,10 @@ public class Expressions {
      * @param expression 输入的表达式
      * @return 是否合法
      */
-    private boolean checkExpressionByRE(String expression){
-    	String reNum="[0-9]*(\\.[0-9]+)?";//匹配整数或者小数（正数）
+    public boolean checkExpressionByRE(String expression){
+    	String reNum="[0-9]+(\\.[0-9]*)?";//匹配整数或者小数（正数）
 		String reFactor=reNum+"+|[a-z]|[A-Z]";//匹配因子
-		String reItem="("+reFactor+")((\\*|\\^)("+reFactor+"))*";//匹配多项式
+		String reItem="("+reFactor+")((\\*)("+reFactor+"))*";//匹配多项式
 		String reExp="("+reItem+")((\\+|-)("+reItem+"))*";//匹配表达式
 		Pattern pattern = Pattern.compile(reExp);
         return pattern.matcher(expression).matches();

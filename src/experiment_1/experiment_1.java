@@ -137,7 +137,7 @@ public class experiment_1 {
 			newstr = str[i] ; 
 			xiang = str[i].split("\\*") ; 
 			for (int j = 0 ; j < xiang.length ; j++) {//对每个项访问
-			//	newxiang=xiang[j] ; 
+				newxiang=xiang[j] ; 
 				for (int k = 0 ; k < xiang[j].length() ; k++) {
 					if (xiang[j].charAt(k) == '^') {
 						for (int l = k+1 ; l < xiang[j].length() ; l++) {//计算^后面的系数是多少
@@ -147,6 +147,8 @@ public class experiment_1 {
 								xishu = xishu * 10 + (xiang[j].charAt(l) - 48) ; 
 							}
 						}
+						if(k==xiang[j].length()-1)
+							return endexpression;
 						newxiang = newxiang.substring(0, newxiang.indexOf("^")) ; 
 						for (int m = 0 ; m < xishu - 1 ; m++) {
 							newxiang += "*" + xiang[j].substring(0, xiang[j].indexOf("^")) ; 
