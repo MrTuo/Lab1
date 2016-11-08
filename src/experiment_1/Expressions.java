@@ -2,7 +2,6 @@ package experiment_1;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
-
 public class Expressions {
 	 //属性
     private String expression = "";//保存原表达式串
@@ -16,10 +15,15 @@ public class Expressions {
      * 根据输入字符串，创建
      * @param inputstr
      */
+    /**
+	 * .
+	 * @param additionalParameters parameter additional
+	 */
     public void setExpressions(String inputstr)
     {
     	if (checkExpressionByRE(inputstr)) {
     		expression = inputstr;
+    		System.out.println(expression);
 		}
     	else{
     		System.out.println("The expression is wrong!Stupid!");
@@ -31,10 +35,10 @@ public class Expressions {
      * @param expression 输入的表达式
      * @return 是否合法
      */
-    private boolean checkExpressionByRE(String expression){
-    	String reNum="[0-9]*(\\.[0-9]+)?";//匹配整数或者小数（正数）
+    public boolean checkExpressionByRE(String expression){
+    	String reNum="[0-9]+(\\.[0-9]*)?";//匹配整数或者小数（正数）
 		String reFactor=reNum+"+|[a-z]|[A-Z]";//匹配因子
-		String reItem="("+reFactor+")((\\*|\\^)("+reFactor+"))*";//匹配多项式
+		String reItem="("+reFactor+")((\\*)("+reFactor+"))*";//匹配多项式
 		String reExp="("+reItem+")((\\+|-)("+reItem+"))*";//匹配表达式
 		Pattern pattern = Pattern.compile(reExp);
         return pattern.matcher(expression).matches();
@@ -48,7 +52,7 @@ public class Expressions {
     public String simplify(ArrayList<String> letter,ArrayList<String> number)
     {
     	String end=null;
-		end =expression;
+		end = expression;
 			/*for (int i=0;i<letter.size();i++){
 				System.out.println(letter.get(i)+' '+number.get(i));
 			}*/
@@ -57,21 +61,28 @@ public class Expressions {
 			//System.out.println(end);
 		}
 		//将化简结果合并简化 by妥
-		ArrayList<String> newItem = setItems(end);//获取多项式
-		int[] newSign = setSign(end, newItem);//获取多项式符号数组
-		String newExpression = makeSimple(end, newItem, newSign);
-		return newExpression;
+//		ArrayList<String> newItem = setItems(end);//获取多项式
+//		int[] newSign = setSign(end, newItem);//获取多项式符号数组
+//		String newExpression = makeSimple(end, newItem, newSign);
+		return end;
     }
     /**
-     * 
-     * @param itemCount
-     * @param var
-     * @param expression
-     * @param fuhao
-     * @return
-     */
+    * set default mock parameter.（方法说明）
+    * @param additionalParameters parameter additional(参数名称)
+    * @return data manager(返回值说明)
+    * @throws Exception if has error(异常说明)
+    */
     public String derivative(String[] itemCount,char var,String expression,ArrayList<String> fuhao){//求导初始化
 		int varNum[];//变量的个数
+		/**
+		 * @return data manager
+		 */
+		/**
+		* set default mock parameter.（方法说明）
+		* @param additionalParameters parameter additional(参数名称)
+		* @return data manager(返回值说明)
+		* @throws Exception if has error(异常说明)
+		*/
 		ArrayList<String>  newitemCount = new ArrayList<String> ();
 		ArrayList<String>  newfuhao = new ArrayList<String> ();
 		String end="";
@@ -123,7 +134,7 @@ public class Expressions {
      * @param expression 表达式
      * @return 多项式
      */
-    private static ArrayList<String> setItems(String expression)
+    public static ArrayList<String> setItems(String expression)
     {
     	String[] tmpItems = expression.split("\\+|\\-");
     	ArrayList<String> items =  new ArrayList<String>();
@@ -139,7 +150,7 @@ public class Expressions {
      * @param items 多项式
      * @return 符号数组
      */
-    private static int[] setSign(String expression, ArrayList<String> items)
+    public static int[] setSign(String expression, ArrayList<String> items)
     {
     	int[] sign = new int[items.size()];
     	int j=0;
@@ -172,7 +183,7 @@ public class Expressions {
      * @param signArr 符号数组
      * @return 简化后的表达式
      */
-    private static String makeSimple(String expression,ArrayList<String> items ,int[] signArr){
+    public static String makeSimple(String expression,ArrayList<String> items ,int[] signArr){
     	String[] factors = null;//保存多项式的因子
         String newExpression = null;//保存最终化简结果
         int[] newXishu  = new int[items.size()];//化简后的系数数组
