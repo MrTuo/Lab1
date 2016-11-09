@@ -2,6 +2,7 @@ package experiment_1 ;
 
 import java.util.ArrayList ; 
 import java.util.Scanner ; 
+import java.util.regex.Pattern ;
 
 /**
 * 
@@ -14,7 +15,7 @@ public class experiment_1 {
 	 * .
 	 * @param args .
 	 */
-	public static void  main (String[] args) {
+	public static void main(String[] args) {
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in) ; 
 		String expression = null ; //输入的表达式或者是！命令行
@@ -52,27 +53,36 @@ public class experiment_1 {
 			case 2://赋值
 				String tmpExpression = "" ; 
 				String endexp = "";
+				String reNum="[0-9]+(\\.[0-9]*)?";
+				String re="!simplify ([a-z]|[A-Z])="+reNum;
+				Pattern pattern = Pattern.compile(re);
 				tmpExpression = clsExpression.getExpression() ; 
-				if (tmpExpression.equals("")) {
-					System.out.println("Error There is no expression!") ; //在没有表达式的情况下无法赋值
-				} else {
-					for (int i=expression.length()-1 ; i>=0 ; i--) {//获得要赋值的变量
-						if(expression.charAt(i)=='=') {
-							j=i ; 
-							number.add(expression.substring(i+1,j+2)) ; //获得要赋值变量的值
-						} else if(expression.charAt(i)==' ') {
-							letter.add(expression.substring(i+1, j)) ; //获得要赋值变量的名称
+				if (pattern.matcher(expression).matches()){
+					if (tmpExpression.equals("")) {
+						System.out.println("Error There is no expression!") ; //在没有表达式的情况下无法赋值
+					} else {
+						for (int i=expression.length()-1 ; i>=0 ; i--) {//获得要赋值的变量
+							if(expression.charAt(i)=='=') {
+								j=i ; 
+								number.add(expression.substring(i+1,j+2)) ; //获得要赋值变量的值
+							} else if(expression.charAt(i)==' ') {
+								letter.add(expression.substring(i+1, j)) ; //获得要赋值变量的名称
+							}
 						}
+						endexp = clsExpression.simplify(letter,number);
+						ArrayList<String> newItem = Expressions.setItems(endexp);//获取多项式
+						int[] newSign = Expressions.setSign(endexp, newItem);//获取多项式符号数组
+						String newExpression = Expressions.makeSimple(endexp, newItem, newSign);
+						System.out.println(newExpression) ; //计算赋值后的结果，在函数中输出
 					}
-					endexp = clsExpression.simplify(letter,number);
-					ArrayList<String> newItem = Expressions.setItems(endexp);//获取多项式
-					int[] newSign = Expressions.setSign(endexp, newItem);//获取多项式符号数组
-					String newExpression = Expressions.makeSimple(endexp, newItem, newSign);
-					System.out.println(newExpression) ; //计算赋值后的结果，在函数中输出
+					number.clear() ; 
+					letter.clear() ; 
+					break ; 
 				}
-				number.clear() ; 
-				letter.clear() ; 
-				break ; 
+				else{
+					System.out.println("Wrong input!")
+				}
+				
 			case 3:
 			//	String tmpExpression ="" ; 
 				tmpExpression = clsExpression.getExpression() ; 

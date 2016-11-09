@@ -60,29 +60,17 @@ public class Expressions {
 			end=end.replace(letter.get(i), number.get(i));
 			//System.out.println(end);
 		}
-		//将化简结果合并简化 by妥
-//		ArrayList<String> newItem = setItems(end);//获取多项式
-//		int[] newSign = setSign(end, newItem);//获取多项式符号数组
-//		String newExpression = makeSimple(end, newItem, newSign);
+
 		return end;
     }
     /**
-    * set default mock parameter.（方法说明）
-    * @param additionalParameters parameter additional(参数名称)
-    * @return data manager(返回值说明)
-    * @throws Exception if has error(异常说明)
+    * 求导
+    * @param 参数列表依次为：多项式每个项的数目，多项式，多项式每个项的符号
+    * @return 求导并化简后的多项式
+    * @throws null
     */
     public String derivative(String[] itemCount,char var,String expression,ArrayList<String> fuhao){//求导初始化
 		int varNum[];//变量的个数
-		/**
-		 * @return data manager
-		 */
-		/**
-		* set default mock parameter.（方法说明）
-		* @param additionalParameters parameter additional(参数名称)
-		* @return data manager(返回值说明)
-		* @throws Exception if has error(异常说明)
-		*/
 		ArrayList<String>  newitemCount = new ArrayList<String> ();
 		ArrayList<String>  newfuhao = new ArrayList<String> ();
 		String end="";
