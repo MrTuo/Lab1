@@ -4,6 +4,8 @@ import java.util.ArrayList ;
 import java.util.Scanner ; 
 import java.util.regex.Pattern ;
 
+import javax.management.StringValueExp;
+
 /**
 * 
 *
@@ -19,15 +21,13 @@ public class experiment_1 {
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in) ; 
 		String expression = null ; //输入的表达式或者是！命令行
+		String tmpExpression = "" ; 
 		String[] xiang ; //这里存放的是将表达式分解为项的String数组
 		int choice = 0 ; //选择
-		ArrayList<String>  number = new ArrayList<String> () ; //记录赋值函数的值
-		ArrayList<String>  letter = new ArrayList<String> () ; //赋值函数的类型
 		ArrayList<String>  fuhao = new ArrayList<String> () ; //存放表达式中的+号或者是-号的位置顺序
 		char varDerivative = 0 ; //保证求导变量的类型
-		int j = 0 ; 
 	//	String tmpExpression ="" ; 
-		
+		int j = 0;
 		Expressions clsExpression = new Expressions() ; //创建表达式对象
 		
 		while(true) {
@@ -51,38 +51,8 @@ public class experiment_1 {
 					clsExpression.setExpressions(expression) ; //设置表达式
 				break ; 
 			case 2://赋值
-				String tmpExpression = "" ; 
-				String endexp = "";
-				String reNum="[0-9]+(\\.[0-9]*)?";
-				String re="!simplify ([a-z]|[A-Z])="+reNum;
-				Pattern pattern = Pattern.compile(re);
-				tmpExpression = clsExpression.getExpression() ; 
-				if (pattern.matcher(expression).matches()){
-					if (tmpExpression.equals("")) {
-						System.out.println("Error There is no expression!") ; //在没有表达式的情况下无法赋值
-					} else {
-						for (int i=expression.length()-1 ; i>=0 ; i--) {//获得要赋值的变量
-							if(expression.charAt(i)=='=') {
-								j=i ; 
-								number.add(expression.substring(i+1,j+2)) ; //获得要赋值变量的值
-							} else if(expression.charAt(i)==' ') {
-								letter.add(expression.substring(i+1, j)) ; //获得要赋值变量的名称
-							}
-						}
-						endexp = clsExpression.simplify(letter,number);
-						ArrayList<String> newItem = Expressions.setItems(endexp);//获取多项式
-						int[] newSign = Expressions.setSign(endexp, newItem);//获取多项式符号数组
-						String newExpression = Expressions.makeSimple(endexp, newItem, newSign);
-						System.out.println(newExpression) ; //计算赋值后的结果，在函数中输出
-					}
-					number.clear() ; 
-					letter.clear() ; 
-					break ; 
-				}
-				else{
-					System.out.println("Wrong input!")
-				}
-				
+				System.out.println(simplify(clsExpression, expression));
+				break;
 			case 3:
 			//	String tmpExpression ="" ; 
 				tmpExpression = clsExpression.getExpression() ; 
@@ -118,6 +88,44 @@ public class experiment_1 {
 			}
 		}
 		return fuhao ; 
+	}
+	/**
+	 * 化简
+	 */
+	public static String simplify(Expressions clsExpression, String expression){
+		ArrayList<String>  number = new ArrayList<String> () ; //记录赋值函数的值
+		ArrayList<String>  letter = new ArrayList<String> () ; //赋值函数的类型
+		String tmpExpression = "" ; 
+		int j = 0 ; 
+		String endexp = "";
+		String reNum="[0-9]+(\\.[0-9]*)?";
+		String re="!simplify ([a-z]|[A-Z])="+reNum;
+		Pattern pattern = Pattern.compile(re);
+		tmpExpression = clsExpression.getExpression() ; 
+		if (pattern.matcher(expression).matches()){
+			if (tmpExpression.equals("")) {
+				return "Error There is no expression!"; //在没有表达式的情况下无法赋值
+			} else {
+				for (int i=expression.length()-1 ; i>=0 ; i--) {//获得要赋值的变量
+					if(expression.charAt(i)=='=') {
+						j=i ; 
+						number.add(expression.substring(i+1,j+2)) ; //获得要赋值变量的值
+					} else if(expression.charAt(i)==' ') {
+						letter.add(expression.substring(i+1, j)) ; //获得要赋值变量的名称
+					}
+				}
+				endexp = clsExpression.simplify(letter,number);
+				ArrayList<String> newItem = Expressions.setItems(endexp);//获取多项式
+				int[] newSign = Expressions.setSign(endexp, newItem);//获取多项式符号数组
+				String newExpression = Expressions.makeSimple(endexp, newItem, newSign);
+				number.clear() ; 
+				letter.clear() ; 
+				return newExpression ; //计算赋值后的结果，在函数中输出
+			}
+		}
+		else{
+			return "Wrong input!";
+		}
 	}
 	/**
 	 * 去掉表达式中的tab和空格，将幂乘转换为连乘（尚未完成）
@@ -190,5 +198,6 @@ public class experiment_1 {
 		return endexpression ; 
 	}
 }
+	
 
 
