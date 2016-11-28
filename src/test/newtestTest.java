@@ -27,53 +27,53 @@ public class newtestTest {
 		newstr=test.changeExpression(str1);
 		assertEquals(true,test.checkExpressionByRE(newstr));
 	}
-//	@Test
-//	public void testSetExpressions2() {
-//		fuhao=experiment_1.myfuhao(str2);
-//		newstr=experiment_1.change(str2, fuhao);
-//		assertEquals(false,test.checkExpressionByRE(newstr));
-//	}
-//	@Test
-//	public void testSetExpressions3() {
-//		fuhao=experiment_1.myfuhao(str3);
-//		newstr=experiment_1.change(str3, fuhao);
-//		assertEquals(false,test.checkExpressionByRE(newstr));
-//	}
-//	@Test
-//	public void testSetExpressions41() {
-//		fuhao=experiment_1.myfuhao(str41);
-//		newstr=experiment_1.change(str41, fuhao);
-//		assertEquals(false,test.checkExpressionByRE(newstr));
-//	}
-//	@Test
-//	public void testSetExpressions42() {
-//		fuhao=experiment_1.myfuhao(str42);
-//		newstr=experiment_1.change(str42, fuhao);
-//		assertEquals(false,test.checkExpressionByRE(newstr));
-//	}
-//	@Test
-//	public void testSetExpressions43() {
-//		fuhao=experiment_1.myfuhao(str43);
-//		newstr=experiment_1.change(str43, fuhao);
-//		assertEquals(false,test.checkExpressionByRE(newstr));
-//	}
-//	@Test
-//	public void testSetExpressions44() {
-//		fuhao=experiment_1.myfuhao(str44);
-//		newstr=experiment_1.change(str44, fuhao);
-//		assertEquals(true,test.checkExpressionByRE(newstr));
-//	}
-//	@Test
-//	public void testSetExpressions45() {
-//		fuhao=experiment_1.myfuhao(str45);
-//		newstr=experiment_1.change(str45, fuhao);
-//		assertEquals(false,test.checkExpressionByRE(newstr));
-//	}
-//	@Test
-//	public void testSetExpressions5() {
-//		fuhao=experiment_1.myfuhao(str5);
-//		newstr=experiment_1.change(str5, fuhao);
-//		assertEquals(true,test.checkExpressionByRE(newstr));
-//	}
+	@Test
+	public void testSetExpressions2() {
+		test.myfuhao(str2);
+		newstr=test.changeExpression(str2);
+		assertEquals(false,test.checkExpressionByRE(newstr));
+	}
+	@Test
+	public void testSetExpressions3() {
+		test.myfuhao(str3);
+		newstr=test.changeExpression(str3);
+		assertEquals(false,test.checkExpressionByRE(newstr));
+	}
+	@Test
+	public void testSetExpressions41() {
+		test.myfuhao(str41);
+		newstr=test.changeExpression(str41);
+		assertEquals(false,test.checkExpressionByRE(newstr));
+	}
+	@Test
+	public void testSetExpressions43() {
+		test.myfuhao(str43);
+		newstr=test.changeExpression(str43);
+		assertEquals(false,test.checkExpressionByRE(newstr));
+	}
+	@Test
+	public void testSetExpressions42() {
+		test.myfuhao(str42);
+		newstr=test.changeExpression(str42);
+		assertEquals(false,test.checkExpressionByRE(newstr));
+	}
+	@Test
+	public void testSetExpressions44() {
+		test.myfuhao(str44);
+		newstr=test.changeExpression(str44);
+		assertEquals(true,test.checkExpressionByRE(newstr));
+	}
+	@Test
+	public void testSetExpressions45() {
+		test.myfuhao(str45);
+		newstr=test.changeExpression(str45);
+		assertEquals(false,test.checkExpressionByRE(newstr));
+	}
+	@Test
+	public void testSetExpressions5() {
+		test.myfuhao(str5);
+		newstr=test.changeExpression(str5);
+		assertEquals(true,test.checkExpressionByRE(newstr));
+	}
 	
 }

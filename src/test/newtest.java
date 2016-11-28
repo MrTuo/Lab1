@@ -1,11 +1,9 @@
 package test ; 
 
-import java.util.ArrayList ; 
 import java.util.Scanner ;
 
 import control.expressioncontrol;
-import domin.Expression;
-import domin.item; 
+import domin.Expression; 
 
 /**
 * 

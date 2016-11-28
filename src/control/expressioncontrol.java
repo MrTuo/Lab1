@@ -23,7 +23,7 @@ public class expressioncontrol {
 	}
 	
 	public void SimplifyOutControl(Expression expression,String input){
-		expression.SimplifyOut(input);
+		System.out.println(expression.SimplifyOut(input));
 	}
 	public void DerivativeOutControl(Expression expression,String input){
 		expression.DerivativeOut(input);

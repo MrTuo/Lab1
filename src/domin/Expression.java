@@ -2,8 +2,9 @@ package domin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.regex.Pattern;
+
+import experiment_1.Expressions;
 
 public class Expression {
 	private String expression;
@@ -350,35 +351,72 @@ public class Expression {
     	
     	return sign;
     }
-    public void SimplifyOut(String input){
-    	String tmpExpression = "" ; 
-    	int j = 0;
-//		tmpExpression = clsExpression.getExpression() ; 
-    	tmpExpression = expression ; 
-		if (tmpExpression.equals("")) {
-			System.out.println("Error There is no expression!") ; //在没有表达式的情况下无法赋值
-		} else {
-			for (int i=input.length()-1 ; i>=0 ; i--) {//获得要赋值的变量
-				
-				if(input.charAt(i)=='=') {
-					j=i ; 
-					number.add(input.substring(i+1,j+2)) ; //获得要赋值变量的值
-				} else if(input.charAt(i)==' ') {
-					letter.add(input.substring(i+1, j)) ; //获得要赋值变量的名称
+//    public String SimplifyOut(String input){
+//    	String tmpExpression = "" ; 
+//    	int j = 0;
+////		tmpExpression = clsExpression.getExpression() ; 
+//    	tmpExpression = expression ; 
+//		if (tmpExpression.equals("")) {
+//			return "Error There is no expression!"; //在没有表达式的情况下无法赋值
+//		} else {
+//			for (int i=input.length()-1 ; i>=0 ; i--) {//获得要赋值的变量
+//				
+//				if(input.charAt(i)=='=') {
+//					j=i ; 
+//					number.add(input.substring(i+1,j+2)) ; //获得要赋值变量的值
+//				} else if(input.charAt(i)==' ') {
+//					letter.add(input.substring(i+1, j)) ; //获得要赋值变量的名称
+//				}
+//			}
+////			clsExpression.setSimplifyexpression(clsExpression.simplify(letter, number));
+//			simplifyexpression=simplify(letter, number);
+//			if (simplifyexpression!=null){
+//				ArrayList<String> newItem = setItems(simplifyexpression);//获取多项式
+//				int[] newSign = setSign(simplifyexpression, newItem);//获取多项式符号数组
+////				String newExpression = makeSimple(end, newItem, newSign);
+//				simplifyexpression=makeSimple(simplifyexpression, newItem, newSign);
+//				//计算赋值后的结果，在函数中输出
+//			}
+//			number.clear() ; 
+//			letter.clear() ; 
+//			return simplifyexpression; 
+//		}
+//    }
+    public String SimplifyOut(String input){
+    	ArrayList<String>  number = new ArrayList<String> () ; //记录赋值函数的值
+		ArrayList<String>  letter = new ArrayList<String> () ; //赋值函数的类型
+		String tmpExpression = "" ; 
+		int j = 0 ; 
+		String simplifyexpression = "";
+		String reNum="[0-9]+(\\.[0-9]*)?";
+		String re="!simplify ([a-z]|[A-Z])="+reNum;
+		Pattern pattern = Pattern.compile(re);
+		//tmpExpression = clsExpression.getExpression() ; 
+		tmpExpression = expression ; 
+		if (pattern.matcher(input).matches()){
+			if (tmpExpression.equals("")) {
+				return "Error There is no expression!"; //在没有表达式的情况下无法赋值
+			} else {
+				for (int i=input.length()-1 ; i>=0 ; i--) {//获得要赋值的变量
+					if(input.charAt(i)=='=') {
+						j=i ; 
+						number.add(input.substring(i+1,j+2)) ; //获得要赋值变量的值
+					} else if(input.charAt(i)==' ') {
+						letter.add(input.substring(i+1, j)) ; //获得要赋值变量的名称
+					}
 				}
-			}
-//			clsExpression.setSimplifyexpression(clsExpression.simplify(letter, number));
-			simplifyexpression=simplify(letter, number);
-			if (simplifyexpression!=null){
+				simplifyexpression = simplify(letter,number);
 				ArrayList<String> newItem = setItems(simplifyexpression);//获取多项式
 				int[] newSign = setSign(simplifyexpression, newItem);//获取多项式符号数组
-//				String newExpression = makeSimple(end, newItem, newSign);
-				simplifyexpression=makeSimple(simplifyexpression, newItem, newSign);
-				System.out.println(simplifyexpression) ; //计算赋值后的结果，在函数中输出
+				simplifyexpression = makeSimple(simplifyexpression, newItem, newSign);
+				number.clear() ; 
+				letter.clear() ; 
+				return simplifyexpression ; //计算赋值后的结果，在函数中输出
 			}
 		}
-		number.clear() ; 
-		letter.clear() ; 
+		else{
+			return "Wrong input!";
+		}
     }
     public void DerivativeOut(String input){
     	String tmpExpression ="" ; 
